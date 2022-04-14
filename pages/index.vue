@@ -43,7 +43,7 @@ export default Vue.extend({
         }, 'image/png')
       })
     },
-    getRandomString(length) {
+    getRandomString(length: number) {
       const source = 'abcdefghijklmnopqrstuvwxyz'
       let result = ''
       for (let i = 0; i < length; i++) {

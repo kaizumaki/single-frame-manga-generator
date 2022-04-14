@@ -20,7 +20,9 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
+    "@nuxtjs/firebase": "^8.2.2",
     "core-js": "^3.19.3",
+    "firebase": "^9.6.10",
     "html2canvas": "^1.4.1",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",

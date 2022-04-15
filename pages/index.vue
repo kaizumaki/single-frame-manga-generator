@@ -1,7 +1,7 @@
 <template>
   <div>
     <div ref="result" class="manga-container">
-      <img src="/test.png" alt="" />
+      <img :src="`/manga/${imageFileName}`" alt="" />
       <div v-if="text" class="manga-text-outer">
         <p class="manga-text">
           <span class="first-letter">{{ text.substr(0, 1) }}</span>
@@ -29,11 +29,19 @@ import html2canvas from 'html2canvas'
 export default Vue.extend({
   data() {
     return {
+      imageFileName: '',
       text: '',
       downloadURL: '',
     }
   },
+  mounted() {
+    this.getImage()
+  },
   methods: {
+    getImage() {
+      const randomNumber = this.getRandomNumber(7, 1)
+      this.imageFileName = `${this.getZeroPad(randomNumber, 2)}.png` || '01.png'
+    },
     uploadImage() {
       const storageRef = this.$fire.storage.ref()
       const randomString = this.getRandomString(8)
@@ -59,6 +67,13 @@ export default Vue.extend({
       }
       return result
     },
+    getRandomNumber(max: number, min: number = 0) {
+      return Math.floor(Math.random() * (max - min) + min)
+    },
+    getZeroPad(value: number, num: number) {
+      const _num = typeof num !== 'undefined' ? num : 2
+      return value.toString().padStart(_num, '0')
+    },
   },
 })
 </script>
@@ -72,26 +87,25 @@ img {
 .manga-container {
   position: relative;
   display: inline-block;
-  border: 5px solid coral;
 }
 .manga-text-outer {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  max-height: 500px;
+  top: 8vw;
+  right: 6.5vw;
+  max-height: 70vw;
 }
 .manga-text {
-  font-size: 30px;
+  font-size: 5vw;
   letter-spacing: 5px;
   writing-mode: vertical-rl;
   .first-letter {
     display: inline-block;
-    width: 55px;
-    height: 55px;
-    line-height: 55px;
+    width: 10vw;
+    height: 10vw;
+    line-height: 10vw;
     border: 2px solid brown;
     border-radius: 50%;
-    font-size: 50px;
+    font-size: 10vw;
     font-weight: bold;
     color: brown;
     padding: 8px;

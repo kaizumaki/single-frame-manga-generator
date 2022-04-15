@@ -80,8 +80,8 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 $container: 980px;
-$fontSize-m: calc(18px + 20 * (100vw - 360px) / 620);
-$fontSize-l: calc(28px + 40 * (100vw - 360px) / 620);
+$fontSize-m: calc(18px + 20 * (100vw - 360px) / 840);
+$fontSize-l: calc(28px + 40 * (100vw - 360px) / 840);
 img {
   max-width: 100%;
   height: auto;

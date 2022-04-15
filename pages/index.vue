@@ -1,13 +1,21 @@
 <template>
   <div>
-    <div ref="result">
-      <div class="manga-container">
-        <img src="/test.png" alt="" />
-        <p>{{ text }}</p>
+    <div ref="result" class="manga-container">
+      <img src="/test.png" alt="" />
+      <div v-if="text" class="manga-text-outer">
+        <p class="manga-text">
+          <span class="first-letter">{{ text.substr(0, 1) }}</span>
+          <span v-html="text.substr(1).replace('\n', '<br/>')"></span>
+        </p>
       </div>
     </div>
-    <input v-model="text" type="text" />
-    <button type="button" @click="uploadImage">upload</button>
+    <div>
+      <p>１コマにセリフをつけてみよう</p>
+      <textarea v-model="text" rows="3" cols="50" />
+    </div>
+    <div>
+      <button type="button" @click="uploadImage">画像を送信</button>
+    </div>
     <div v-if="downloadURL">
       <a :href="downloadURL" target="_blank">{{ downloadURL }}</a>
     </div>
@@ -54,3 +62,41 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+.manga-container {
+  position: relative;
+  display: inline-block;
+  border: 5px solid coral;
+}
+.manga-text-outer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  max-height: 500px;
+}
+.manga-text {
+  font-size: 30px;
+  letter-spacing: 5px;
+  writing-mode: vertical-rl;
+  .first-letter {
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    border: 2px solid brown;
+    border-radius: 50%;
+    font-size: 50px;
+    font-weight: bold;
+    color: brown;
+    padding: 8px;
+    text-align: center;
+    letter-spacing: 0;
+  }
+}
+</style>

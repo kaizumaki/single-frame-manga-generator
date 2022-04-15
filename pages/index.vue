@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <div ref="result" class="manga-container">
       <img :src="`/manga/${imageFileName}`" alt="" />
       <div v-if="text" class="manga-text-outer">
@@ -79,10 +79,18 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+$container: 980px;
+$fontSize-m: calc(30px + 10 * (100vw - $container) / 600);
+$fontSize-l: calc(60px + 20 * (100vw - $container) / 600);
 img {
   max-width: 100%;
   height: auto;
   vertical-align: bottom;
+}
+.main-container {
+  padding: 20px;
+  max-width: $container;
+  margin: 0 auto;
 }
 .manga-container {
   position: relative;
@@ -90,22 +98,22 @@ img {
 }
 .manga-text-outer {
   position: absolute;
-  top: 8vw;
+  top: 7.5vw;
   right: 6.5vw;
   max-height: 70vw;
 }
 .manga-text {
-  font-size: 5vw;
+  font-size: $fontSize-m;
   letter-spacing: 5px;
   writing-mode: vertical-rl;
   .first-letter {
     display: inline-block;
-    width: 10vw;
-    height: 10vw;
-    line-height: 10vw;
+    width: $fontSize-l;
+    height: $fontSize-l;
+    line-height: $fontSize-l;
     border: 2px solid brown;
     border-radius: 50%;
-    font-size: 10vw;
+    font-size: $fontSize-l;
     font-weight: bold;
     color: brown;
     padding: 8px;
